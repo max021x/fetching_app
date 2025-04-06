@@ -1,11 +1,12 @@
 const express = require('express') ; 
+const db = require('./lib/db.js') ; 
 require('dotenv').config() ; 
 const app = express() ; 
 
 app.use(express.urlencoded({extended:false})) ; 
 
 
-app.use('/' , (req , res)=>{
+app.use('/' , async (req , res , next)=>{
         /* url is wrong */
         // fetch("https://brsapi.ir/FreeTsetmcBourseApi/Api_Free_Gold_Currency_v2.json")
         // .then(response=> response.json())
@@ -14,6 +15,13 @@ app.use('/' , (req , res)=>{
 
         // reading from db insted 
 
+        const red = await db.readFromDatabase()  ;
+        console.log(red) ; 
+        next() ; 
+})
+
+app.use('/' , (req , res)=>{
+        res.send('done 👍') ; 
 })
 
 
