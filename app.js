@@ -1,5 +1,6 @@
 const express = require('express') ; 
 const db = require('./lib/db.js') ; 
+// =======> we need currency method here ./actions/fetch.js
 require('dotenv').config() ; 
 const app = express() ; 
 

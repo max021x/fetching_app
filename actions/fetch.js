@@ -1,6 +1,6 @@
 // import {insertcurrency, saveAll } from "@/lib/db";
 
-import { insertCurrency  , insertbBourse , readDate } from "@/lib/db";
+import { insertCurrency  , insertbBourse , readDate } from "@/lib/db"; // wrong path
 export async function currency(allData) {
     // take the data form api 
     const { gold, currency, cryptocurrency } = allData;
