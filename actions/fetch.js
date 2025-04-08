@@ -1,6 +1,15 @@
 // import {insertcurrency, saveAll } from "@/lib/db";
 
-import { insertCurrency  , insertbBourse , readDate } from "@/lib/db"; // wrong path
+import { insertCurrency  , insertbBourse , readDate } from "../lib/db.js"; // wrong path
+const columns = [
+    'date' , 
+    'time' , 
+    'symbol' , 
+    'name' , 
+    'price' , 
+    'change_percent' , 
+    'unit' ,
+]
 export async function currency(allData) {
     // take the data form api 
     const { gold, currency, cryptocurrency } = allData;
@@ -22,8 +31,12 @@ export async function currency(allData) {
         await gold.map(cur => {
             const arr = [] 
             for(let key of Object.keys(cur)){
-                arr.push(cur[key])
+                if(columns.includes(key)){
+                    arr.push(cur[key])
+                }
+                
             }
+            // console.log(arr)
             arr.push("gold") ;
             insertbBourse(...arr)  
         })
@@ -31,7 +44,9 @@ export async function currency(allData) {
         await currency.map(cur => {
             const arr = [] 
             for(let key of Object.keys(cur)){
-                arr.push(cur[key])
+                if(columns.includes(key)){
+                    arr.push(cur[key])
+                }
             }
             arr.push("currency") ; 
             insertbBourse(...arr) 
@@ -40,7 +55,9 @@ export async function currency(allData) {
         await cryptocurrency.map(cur => {
             const arr = [] 
             for(let key of Object.keys(cur)){
-                arr.push(cur[key])
+                if(columns.includes(key)){
+                    arr.push(cur[key])
+                }
             }
             arr.push("cryptocurrency") ; 
             insertbBourse(...arr) ;

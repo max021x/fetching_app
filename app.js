@@ -1,5 +1,6 @@
 const express = require('express') ; 
 const db = require('./lib/db.js') ; 
+const actions = require('./actions/fetch.js') ; 
 // =======> we need currency method here ./actions/fetch.js
 require('dotenv').config() ; 
 const app = express() ; 
@@ -8,16 +9,15 @@ app.use(express.urlencoded({extended:false})) ;
 
 
 app.use('/' , async (req , res , next)=>{
-        /* url is wrong */
-        // fetch("https://brsapi.ir/FreeTsetmcBourseApi/Api_Free_Gold_Currency_v2.json")
-        // .then(response=> response.json())
-        // .then(data => console.log(data))
-        // .catch(err=> console.log(err)) ;         
+              
+        await fetch("http://localhost:8080/api/Gold_Currency.php.json")
+        .then(response=> response.json())
+        .then(data => actions.currency({...data}))
+        .catch(err=> console.log(err)) ;         
 
         // reading from db insted 
-
-        const red = await db.readFromDatabase()  ;
-        console.log(red) ; 
+        // const red = await db.readFromDatabase()  ;
+        // console.log(red) ; 
         next() ; 
 })
 
