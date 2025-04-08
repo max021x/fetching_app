@@ -10,7 +10,7 @@ app.use(express.urlencoded({extended:false})) ;
 
 app.use('/' , async (req , res , next)=>{
               
-        await fetch("http://localhost:8080/api/Gold_Currency.php.json")
+        await fetch("https://BrsApi.ir/Api/Market/Gold_Currency.php?key=FreeWLWlJd3lthRPas4z2GdwBD2dz7JF")
         .then(response=> response.json())
         .then(data => actions.currency({...data}))
         .catch(err=> console.log(err)) ;         
