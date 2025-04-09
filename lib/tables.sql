@@ -1,11 +1,14 @@
 use Crypto ; 
 go 
 
+-- tables
+
 CREATE TABLE [dbo].[Currency] (
     [id] INT NOT NULL IDENTITY(1,1),
     [date] VARCHAR(15) NOT NULL,
     [symbol] NVARCHAR(100) NOT NULL,
     [price] FLOAT NOT NULL,
+    [timestamp] DATETIME DEFAULT GETDATE() , 
     CONSTRAINT [Currency_pkey] PRIMARY KEY CLUSTERED ([id])
 );
 
@@ -20,11 +23,18 @@ CREATE TABLE [dbo].[Bourse] (
     [price] FLOAT NOT NULL,
     [change_percent] FLOAT NOT NULL,
     [unit] NVARCHAR(50) NOT NULL,
+    [timestamp] DATETIME DEFAULT GETDATE() , 
     CONSTRAINT [Borse_pkey] PRIMARY KEY CLUSTERED ([id])
 );
 
 
 
+TRUNCATE  TABLE Bourse ;TRUNCATE  TABLE Currency ;
+
+
+
+
+-- my settings
 
 ALTER DATABASE Crypto SET SINGLE_USER WITH ROLLBACK IMMEDIATE; 
 
