@@ -15,9 +15,6 @@ app.use('/' , async (req , res , next)=>{
         .then(data => actions.currency({...data}))
         .catch(err=> console.log(err)) ;         
 
-        // reading from db insted 
-        // const red = await db.readFromDatabase()  ;
-        // console.log(red) ; 
         next() ; 
 })
 

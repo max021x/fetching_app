@@ -1,6 +1,6 @@
 // import {insertcurrency, saveAll } from "@/lib/db";
 
-import { insertCurrency  , insertbBourse , readDate } from "../lib/db.js"; // wrong path
+import { insertCurrency  , insertbBourse , readDate , updateCurrency} from "../lib/db.js"; // wrong path
 const columns = [
     'date' , 
     'time' , 
@@ -17,6 +17,9 @@ export async function currency(allData) {
     const currendate = cryptocurrency[0]['date'] ; 
     const readTabeldata = await readDate() ; 
     if(currendate ===  readTabeldata){ 
+        await currency.map(cur=>{
+            updateCurrency(cur.date , +cur.price , cur.symbol);
+        })
         return ; 
     }    
 
