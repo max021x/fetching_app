@@ -10,7 +10,8 @@ app.use(express.urlencoded({extended:false})) ;
 
 app.use('/' , async (req , res , next)=>{
               
-        await fetch("https://BrsApi.ir/Api/Market/Gold_Currency.php?key=FreeWLWlJd3lthRPas4z2GdwBD2dz7JF")
+        // await fetch("https://BrsApi.ir/Api/Market/Gold_Currency.php?key=FreeWLWlJd3lthRPas4z2GdwBD2dz7JF")
+        await fetch("http://localhost:8080/api/Gold_Currency.php.json")
         .then(response=> response.json())
         .then(data => actions.currency({...data}))
         .catch(err=> console.log(err)) ;         
@@ -18,7 +19,7 @@ app.use('/' , async (req , res , next)=>{
         next() ; 
 })
 
-app.use('/' , (req , res)=>{
+app.use('/' , async (req , res)=>{
         res.send('done 👍') ; 
 })
 

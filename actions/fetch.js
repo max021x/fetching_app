@@ -1,6 +1,6 @@
 // import {insertcurrency, saveAll } from "@/lib/db";
 
-import { insertCurrency  , insertbBourse , readDate , updateCurrency} from "../lib/db.js"; // wrong path
+import { insertCurrency  , insertbBourse , readDate , updateCurrency , sql} from "../lib/db.js"; // wrong path
 const columns = [
     'date' , 
     'time' , 
