@@ -1,6 +1,6 @@
 // import {insertcurrency, saveAll } from "@/lib/db";
 
-import { insertCurrency  , insertbBourse , readDate , updateCurrency , sql} from "../lib/db.js"; // wrong path
+import { insertCurrency  , insertbBourse , readDate , updateCurrency , CheckTblEmpty , sql} from "../lib/db.js"; // wrong path
 const columns = [
     'date' , 
     'time' , 
@@ -15,21 +15,29 @@ export async function currency(allData) {
     const { gold, currency, cryptocurrency } = allData;
     // check date 
     const currendate = cryptocurrency[0]['date'] ; 
-    const readTabeldata = await readDate() ; 
+    // check table is empty 
+    const readTabeldata = await readDate() ;    
+    const isempty = await CheckTblEmpty('Currency') ; 
     if(currendate ===  readTabeldata){ 
         await currency.map(cur=>{
-            updateCurrency(cur.date , +cur.price , cur.symbol);
-        })
+                updateCurrency(cur.date , +cur.price , cur.symbol);
+            }) ; 
         return ; 
     }    
 
     // insert data
     try {
-        // console.log(currency)
-        await currency.map(cur => {
-            insertCurrency(cur.date, +cur.price, cur.symbol);
-        })
         
+            await currency.map(cur => {
+                if(isempty === true){
+                 insertCurrency(cur.date, +cur.price, cur.symbol);
+                }
+                else{
+                 updateCurrency(cur.date , +cur.price , cur.symbol);
+                }
+            })
+        
+
         
         await gold.map(cur => {
             const arr = [] 
