@@ -1,0 +1,29 @@
+Project Title :  Fetching_app API 
+Description :  
+An api for getting  data from this URL to update our products price  
+this api get all data from URL and store it in two tables (Bourse , Currency ) in Crypto 
+database   
+>>> Bourse table has all items of this URL and get new records every day  
+>>> Currency table has only (date , price , symbol) but doesn’t get new records it only 
+get updated  
+Installation Instructions :  
+You can get fetch app  from  here  
+Then Use this Command to get all files and packages:  
+npm install  
+Usage : 
+To run the project from fetchapp repo use   :  
+node app.js  
+If you want run this app from docker : 
+First You need a DockerFile with this content :  
+FROM node:alpine //  
+WORKDIR /app 
+COPY package.json /app 
+RUN npm install 
+COPY . /app 
+CMD ["node","app.js"] 
+EXPOSE 3000 
+Then you can build and run form the console ;  you can save the image too  
+ImageName >>> fetch:v1 
+>>> docker build –t fetch:v1 . // to build image for Dockerfile 
+>>> docker run -p 3000:3000 fetch:v1 // to run image on port 3000 
+>>> docker save fetch:v1 > fileName.tar // to save image in to a tar file 
