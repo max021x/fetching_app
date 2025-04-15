@@ -15,11 +15,11 @@ export async function currency(allData) {
     const { gold, currency, cryptocurrency } = allData;
     // check date 
     const currendate = cryptocurrency[0]['date'] ; 
-    // check table is empty 
     const readTabeldata = await readDate() ;    
+    // check table is empty 
     const isempty = await CheckTblEmpty('Currency') ; 
     if(currendate ===  readTabeldata){ 
-        await currency.map(cur=>{
+    await currency.map(cur=>{
                 updateCurrency(cur.date , +cur.price , cur.symbol);
             }) ; 
         return ; 
