@@ -31,32 +31,3 @@ CREATE TABLE [dbo].[Bourse] (
 
 TRUNCATE  TABLE Bourse ;TRUNCATE  TABLE Currency ;
 
-
-
-
--- my settings
-
-ALTER DATABASE Crypto SET SINGLE_USER WITH ROLLBACK IMMEDIATE; 
-
-GO 
-
-ALTER DATABASE Crypto COLLATE arabic_ci_ai ; 
-
-GO 
-
-ALTER DATABASE Crypto SET MULTI_USER; 
-
-GO 
-
-
-
-GRANT CONTROL ON DATABASE::[Crypto] TO [hadmin];
-GO
-
-
-USE [Crypto]; -- Switch to the target database
-GO
-
--- Grant all permissions to the user
-GRANT CONTROL ON DATABASE::[Crypto] TO [hadmin];
-GO

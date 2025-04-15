@@ -10,7 +10,7 @@ const columns = [
     'change_percent' , 
     'unit' ,
 ]
-export async function currency(allData) {
+export async function getObject(allData) {
     // take the data form api 
     const { gold, currency, cryptocurrency } = allData;
     // check date 

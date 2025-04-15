@@ -13,7 +13,7 @@ app.use('/' , async (req , res , next)=>{
         await fetch("https://BrsApi.ir/Api/Market/Gold_Currency.php?key=FreeWLWlJd3lthRPas4z2GdwBD2dz7JF")
         // await fetch("http://localhost:8080/api/Gold_Currency.php.json")
         .then(response=> response.json())
-        .then(data => actions.currency({...data}))
+        .then(data => actions.getObject({...data}))
         .catch(err=> console.log(err)) ;         
 
         next() ; 
